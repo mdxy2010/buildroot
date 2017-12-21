@@ -1,0 +1,16 @@
+config BR2_PACKAGE_FSTEST
+	bool "fstest"
+	depends on BR2_USE_MMU # fork()
+	depends on !BR2_STATIC_LIBS
+	depends on BR2_TOOLCHAIN_HAS_SYNC_4
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+	depends on !BR2_nios2
+	help
+		simple fs test case
+
+
+comment "fstest needs a toolchain w/ dynamic library, threads"
+	depends on !BR2_TOOLCHAIN_HAS_THREADS || BR2_STATIC_LIBS
+	depends on BR2_TOOLCHAIN_HAS_SYNC_4
+	depends on !BR2_nios2
+	depends on BR2_USE_MMU
